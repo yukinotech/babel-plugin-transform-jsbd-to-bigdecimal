@@ -4,6 +4,14 @@ A scheme similar to JSBI, for transforming JSBD to native bigdecimal, Referring 
 
 ## how to use
 
+use as a babel plugin `@yukinotech/babel-plugin-transform-jsbd-to-bigdecimal`
+
+```js
+const result = require('@babel/core').transform(code, {
+  plugins: ['@yukinotech/babel-plugin-transform-jsbd-to-bigdecimal'],
+  comments: false,
+})
+```
 ## how it work
 
 it will replace indetitor `JSBD` to native bigdecimal syntax
