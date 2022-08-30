@@ -30,6 +30,7 @@ it will replace indetitor `JSBD` to native bigdecimal syntax
 |                                  | `a <= b`           | `JSBD.lessThanOrEqual(a, b)`             |
 |                                  | `a > b`            | `JSBD.greaterThan(a, b)`                 |
 |                                  | `a >= b`           | `JSBD.greaterThanOrEqual(a, b)`          |
+|                                  | `c = BigDecimal.round(a,option)` | `c = JSBD.round(a, option)` |
 | Division with three arguments    | `c = BigDecimal.divide(a,b,roundOption)` | `c = JSBD.divide(a, b,roundOption)`|
 
 ### differences from bigint to bigdecimal
