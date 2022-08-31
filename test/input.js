@@ -8,10 +8,20 @@ a(1)
 // constructor
 
 const one = JSBD.BigDecimal(1)
-const one1 = JSBD.BigDecimal(1.001)
-const minusOne1 = JSBD.BigDecimal(-1.001)
-const one2 = JSBD.BigDecimal('0x32')
-const one3 = JSBD.BigDecimal(1n)
+const plus_num_one = JSBD.BigDecimal(+1)
+const minus_num_one = JSBD.BigDecimal(-1)
+const num_13p3 = JSBD.BigDecimal(13.3)
+const plus_num_13p3 = JSBD.BigDecimal(+13.3)
+const minus_num_13p3 = JSBD.BigDecimal(-13.3)
+const str_12p4 = JSBD.BigDecimal('12.4')
+const plus_str_12p4 = JSBD.BigDecimal('+12.4')
+const minus_str_12p4 = JSBD.BigDecimal('-12.4')
+const str_12 = JSBD.BigDecimal('12')
+const plus_str_12 = JSBD.BigDecimal('+12')
+const minus_str_12 = JSBD.BigDecimal('-12')
+const bigint = JSBD.BigDecimal(1n)
+const minus_bigint = JSBD.BigDecimal(-1n)
+const plus_bigint = JSBD.BigDecimal(+1n)
 
 // add,subtract,multiply,pow,divide,remainder
 
@@ -26,16 +36,16 @@ const remainder = JSBD.remainder(one, one)
 
 // equal,notEqual,lessThan,greaterThanOrEqual,greaterThan,lessThanOrEqual
 
-const isBig1 = JSBD.equal(JSBD.BigDecimal('0x32'), JSBD.BigDecimal(1n))
-const isBig2 = JSBD.notEqual(JSBD.BigDecimal('0x32'), JSBD.BigDecimal(1n))
-const isBig3 = JSBD.lessThan(JSBD.BigDecimal('0x32'), JSBD.BigDecimal(1n))
-const isBig4 = JSBD.greaterThanOrEqual(JSBD.BigDecimal('0x32'), JSBD.BigDecimal(1n))
-const isBig5 = JSBD.greaterThan(JSBD.BigDecimal('0x32'), JSBD.BigDecimal(1n))
-const isBig6 = JSBD.lessThanOrEqual(JSBD.BigDecimal('0x32'), JSBD.BigDecimal(1n))
+const isBig1 = JSBD.equal(JSBD.BigDecimal('12.4'), JSBD.BigDecimal(1n))
+const isBig2 = JSBD.notEqual(JSBD.BigDecimal('12.4'), JSBD.BigDecimal(1n))
+const isBig3 = JSBD.lessThan(JSBD.BigDecimal('12.4'), JSBD.BigDecimal(1n))
+const isBig4 = JSBD.greaterThanOrEqual(JSBD.BigDecimal('12.4'), JSBD.BigDecimal(1n))
+const isBig5 = JSBD.greaterThan(JSBD.BigDecimal('12.4'), JSBD.BigDecimal(1n))
+const isBig6 = JSBD.lessThanOrEqual(JSBD.BigDecimal('12.4'), JSBD.BigDecimal(1n))
 
 // round
 
-const two2 = JSBD.round(JSBD.BigDecimal('0x32'),options)
+const two2 = JSBD.round(JSBD.BigDecimal(0x32),options)
 
 // instanceof, JSBD has not implete yet
 

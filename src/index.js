@@ -86,14 +86,39 @@ export default function (babel) {
   }
 
   const createBigDecimalConstructor = (path) => {
-    const reDecimal = /^(?:0|[1-9][0-9]*)$/
+    const reDecimal =
+      /^(-|\+)?((0\.[0-9]*)|([1-9][0-9]*\.[0-9]*)|(\.[0-9]+)|([1-9][0-9]*)|(0))$/
     const arg = path.node.arguments[0]
-    if (
-      t.isNumericLiteral(arg) ||
-      t.isBigIntLiteral(arg) ||
-      (t.isStringLiteral(arg) && reDecimal.test(arg.value))
-    ) {
+
+    if (t.isNumericLiteral(arg) || t.isBigIntLiteral(arg)) {
+      // handle just numberLiteral or bigintLiteral,like: 12,13n
       return t.decimalLiteral(`${arg.value}`)
+    } else if (
+      t.isUnaryExpression(arg) &&
+      (arg.operator === '+' || arg.operator === '-')
+    ) {
+      // handle signed numberLiteral or bigintLiteral,like: +12,-13n
+      if (t.isNumericLiteral(arg.argument) || t.isBigIntLiteral(arg.argument)) {
+        return t.UnaryExpression(
+          arg.operator,
+          t.decimalLiteral(`${arg.argument.value}`)
+        )
+      }
+    } else if (t.isStringLiteral(arg)) {
+      const matchRes = arg.value.match(reDecimal)
+      if (matchRes) {
+        if (matchRes['1'] && matchRes['2']) {
+          // handle signed stringLiteral ,like: -12.3
+          return t.UnaryExpression(
+            matchRes['1'],
+            t.decimalLiteral(matchRes['2'])
+          )
+        }
+        if (!matchRes['1'] && matchRes['2']) {
+          // handle unsigned stringLiteral ,like: 12.3
+          return t.decimalLiteral(matchRes['2'])
+        }
+      }
     }
     return t.callExpression(t.identifier('BigDecimal'), [arg])
   }
